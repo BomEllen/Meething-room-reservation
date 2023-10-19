@@ -1,0 +1,23 @@
+@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+
+.jejumyeongjo * { 
+    font-family: 'Jeju Myeongjo', serif;
+}
+
+@font-face {
+    font-family: 'PuradakGentleGothicR', serif;
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.1/PuradakGentleGothicR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+} /* 푸라닭 젠틀 고딕 */
+
+@font-face {
+    font-family: 'MapoAgape', serif;
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoAgapeA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+} /* 마포 애민 - 타이틀*/
+
+*{
+    font-family: 'Jeju Myeongjo', serif;
+} /* 제주 명조를 전체 글꼴로 설정 */
