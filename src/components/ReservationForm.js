@@ -1,14 +1,23 @@
-import { useState } from "react";
+import React from "react";
 import styled from "styled-components";
+import { useState } from "react";
+const ReservationForm = (props) => {
+    const [inputValue, setInputValue] = useState(''); // 사용자가 입력한 값 저장
+    const rooms = props.rooms;
+    
+    const deleteHandler = (id) => {
+        const deleteHandler = () => {
+        const idToDelete = parseInt(inputValue); // 입력값을 정수로 변환
+        if (isNaN(idToDelete)) {
+            console.log("올바른 방 번호를 입력해주세요.");
+            return;
+        }
 
-const ReservationForm = () => {
-    const [mid, setMid] = useState('');  // state 변수
+        props.deleteHandler(idToDelete);
+        console.log('삭제되었습니다', idToDelete);
+        setInputValue(''); // 삭제 후 입력 필드 초기화
+    }}
 
-    // 이벤트 핸들러 정의
-    const heandleInput = (e) => {
-        // alert(e.target.value);
-        setMid(e.target.value);  // state의 변수에 값을 넣을 땐 setter에 값을 변환해 줘야 함. 바로 mid값을 바꾸려고 하면 안됨!
-    }
 
     return (
         <Contaner>
@@ -16,7 +25,7 @@ const ReservationForm = () => {
             <form>
                 <Labels>
                     <label>
-                        예약자명 : <input type='text' placeholder={"예약자 성함을 입력해주세요"} size={25} onChange={heandleInput}/>
+                        예약자명 : <input type='text' placeholder={"예약자 성함을 입력해주세요"} size={25} />
                     </label> <br/><br/>
                     <label>
                         방 번호 : <input type='text' placeholder={"방 번호를 입력해주세요 "} size={25} />
@@ -28,10 +37,9 @@ const ReservationForm = () => {
                         이용시간 : <input type='text' placeholder={"이용시간을 입력해주세요"} size={25}/>
                     </label> 
                 </Labels>
-                <Button>Click</Button>
+                <Button onClick={() => deleteHandler(101)}>예약하기</Button>
             </form>
 
-        {/* <h3>New menu : {mid}</h3>    얘 없애도 됨 위에 핸들러 반응해주는 거 */}
         </Contaner>
     );
 }
