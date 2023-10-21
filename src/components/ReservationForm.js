@@ -16,10 +16,12 @@ const ReservationForm = (props) => {
     const {idToDelete, user, persons, hour} = inputValue; // 비 구조화 할당..?
 
     const onChangeInput = event => {
-        const {value, name} = event.target;
-        setInputValue({...initialValue, [name]: value}); // 스프레드 연산자
+        const { value, name } = event.target;
+        setInputValue(prevInputValue => ({
+            ...prevInputValue,
+            [name]: value,
+        }));
     }
-
 
     const deleteHandler = () => {
         const idToDeleteInt = parseInt(idToDelete);
