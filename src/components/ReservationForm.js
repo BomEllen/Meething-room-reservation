@@ -5,16 +5,19 @@ import { useState } from "react";
 const ReservationForm = (props) => {
     const rooms = props.rooms;
 
+    // 초기 입력값을 설정합니다.
     const initialValue = {
-        idToDelete: '',
-        user:'',
-        persons:'',
-        hour:'',
+        idToDelete: '', // 삭제할 방 번호
+        user: '', // 예약자명
+        persons: '', // 사용 인원
+        hour: '', // 이용 시간
     };  
 
-    const [inputValue, setInputValue] = useState(initialValue); // 사용자가 입력한 값 저장
-    const {idToDelete, user, persons, hour} = inputValue; // 비 구조화 할당..?
+    // 입력값을 관리하는 state 입니다.
+    const [inputValue, setInputValue] = useState(initialValue);
+    const { idToDelete, user, persons, hour } = inputValue;
 
+    // 입력값이 변경될 때 실행되는 함수 입니다.
     const onChangeInput = event => {
         const { value, name } = event.target;
         setInputValue(prevInputValue => ({
@@ -23,19 +26,33 @@ const ReservationForm = (props) => {
         }));
     }
 
-    const deleteHandler = () => {
+    // 예약을 추가하는 함수 입니다. 
+    const addReservation = () => {
         const idToDeleteInt = parseInt(idToDelete);
         if (!isNaN(idToDeleteInt)) {
-            props.deleteHandler(idToDeleteInt); // deleteHandler에 ID 전달
-            console.log("ID가", idToDeleteInt, "인 방 삭제됨");
-            setInputValue(initialValue); // 입력 필드 재설정
+            // 입력값을 기반으로 가격을 계산합니다.
+            const calculatedPrice = parseInt(persons) * parseInt(hour);
+    
+            // 폼 입력값을 사용하여 예약 객체를 생성합니다.
+            const reservation = {
+                roomNo: idToDelete,
+                customer: user,
+                persons: parseInt(persons),
+                hours: parseInt(hour),
+                price: calculatedPrice,
+            };
+            
+            // 부모 컴포넌트로 예약을 전달합니다.
+            props.addReservation(reservation);
+            console.log("예약되었습니다", reservation);
+            setInputValue(initialValue); // 폼 입력값 초기화
         } else {
             console.log("잘못된 ID");
         }
     };
 
     return (
-        <Contaner>
+        <Container>
         <Title>Let's Reservation!</Title>
         <form>
             <Labels>
@@ -93,17 +110,17 @@ const ReservationForm = (props) => {
             <Button
             onClick={(e) => {
                 e.preventDefault(); // 제출 시, 새로고침 막기
-                deleteHandler();
+                addReservation();
             }}
             >
             예약하기
             </Button>
         </form>
-        </Contaner>
+        </Container>
     );
 };
 
-const Contaner = styled.div`
+const Container = styled.div`
     background-color: #f5eec8;
     text-align: center;
     margin: 4% 25%;

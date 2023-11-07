@@ -7,10 +7,7 @@ const Heading = () => {
 		<Title> Juyeon's Meeting Room </Title>
 		<TableName>예약 가능 목록</TableName>
 		</>
-
-
 	);
-
 }
 
 const Title = styled.h1`
@@ -28,3 +25,4 @@ const TableName = styled.h2`
 `
 
 export default Heading;
+

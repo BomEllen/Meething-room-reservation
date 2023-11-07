@@ -4,7 +4,6 @@ import RoomItem from "./RoomItem";
 //예약 가능한 미팅 룸 목록 테이블 
 const RoomList = (props) => {
     const rooms = props.rooms;
-// const rows = rooms.map((rooms)=> <RoomItem rooms={rooms}/>);
     return (
         <>
             <Table>
@@ -17,7 +16,6 @@ const RoomList = (props) => {
                     </tr>
                 </Thead>
                 <tbody>
-                    {/*{rows}*/}
                     {rooms.map((rooms)=> <RoomItem rooms={rooms}/>)}
                 </tbody>
             </Table>
